@@ -125,20 +125,40 @@
         </div>
 
         <div class="content">
-            <h3>Bagaimana Perasaanmu?</h3>
-            <p class="sub-text">( Pilih satu untuk dapat +10 Poin! )</p>
+    <h3>Bagaimana Perasaanmu?</h3>
+    <p class="sub-text">( Pilih satu untuk dapat +10 Poin! )</p>
 
-            <div class="mood-grid">
-                <div class="mood-item"><div>😊</div><span>Joy</span></div>
-                <div class="mood-item"><div>😢</div><span>Sad</span></div>
-                <div class="mood-item"><div>😡</div><span>Anger</span></div>
-                <div class="mood-item"><div>😨</div><span>Fear</span></div>
-                <div class="mood-item"><div>🤢</div><span>Disgust</span></div>
-            </div>
+    <form action="/simpan" method="POST">
+        
+        <div class="mood-grid">
+            <label class="mood-item">
+                <input type="radio" name="mood" value="Joy" required style="display:none;">
+                <div>😊</div><span>Joy</span>
+            </label>
+            <label class="mood-item">
+                <input type="radio" name="mood" value="Sad" style="display:none;">
+                <div>😢</div><span>Sad</span>
+            </label>
+            <label class="mood-item">
+                <input type="radio" name="mood" value="Anger" style="display:none;">
+                <div>😡</div><span>Anger</span>
+            </label>
+            <label class="mood-item">
+                <input type="radio" name="mood" value="Fear" style="display:none;">
+                <div>😨</div><span>Fear</span>
+            </label>
+            <label class="mood-item">
+                <input type="radio" name="mood" value="Disgust" style="display:none;">
+                <div>🤢</div><span>Disgust</span>
+            </label>
+        </div>
 
-            <textarea placeholder="Tulis alasan singkat..." rows="3"></textarea>
+        <textarea name="catatan" placeholder="Tulis alasan singkat..." rows="3"></textarea>
 
-            <button class="btn-save">SIMPAN JURNAL</button>
+        <button type="submit" class="btn-save">SIMPAN JURNAL</button>
+        
+    </form>
+</div>
 
             <div class="level-section">
                 <strong>LEVEL SAAT INI:</strong>

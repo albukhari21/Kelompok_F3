@@ -8,19 +8,25 @@ app.use(express.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
 
 // 1. KONFIGURASI DATABASE (Sesuai Tabel Kelompok 3)
-const db = mysql.createConnection({
-    host: 'db_service',        // Nama container di docker-compose
-    user: 'kelasf',            // Sesuai tabel
-    password: 'TekserF-2025',  // Sesuai tabel
-    database: 'mood_tracker_db'
+// Gunakan createPool agar koneksi tidak gampang putus
+const db = mysql.createPool({
+    host: 'db_service',
+    user: 'kelasf',
+    password: 'TekserF-2025',
+    database: 'mood_tracker_db',
+    waitForConnections: true,
+    connectionLimit: 10,
+    queueLimit: 0
 });
 
-db.connect((err) => {
+// Tes koneksi sekali saja saat start
+db.getConnection((err, connection) => {
     if (err) {
-        console.error('Gagal konek ke MySQL: ' + err.stack);
-        return;
+        console.error('Database tidak bisa dijangkau: ', err);
+    } else {
+        console.log('Database terhubung!');
+        connection.release();
     }
-    console.log('Berhasil terhubung ke database MySQL.');
 });
 
 // 2. TAMPILKAN HALAMAN UTAMA & RIWAYAT

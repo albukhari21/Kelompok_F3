@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mood Flow - Daily Tracker</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <div class="container py-5">
+        <h1 class="text-center mb-4">Mood Flow 😊</h1>
+        <div class="card p-4 shadow-sm mb-4">
+            <form action="/add" method="POST" class="row g-3">
+                <div class="col-md-6">
+                    <select name="mood" class="form-select">
+                        <option value="happy">Happy 😊</option>
+                        <option value="sad">Sad 😢</option>
+                        <option value="neutral">Neutral 😐</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <input type="text" name="note" class="form-control" placeholder="Catatan hari ini...">
+                </div>
+                <div class="col-md-2">
+                    <button type="submit" class="btn btn-primary w-100">Simpan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

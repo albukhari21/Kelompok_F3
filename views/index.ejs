@@ -3,175 +3,178 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MyMood Journal - Kelompok 3</title>
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+    <title>Mood Flow - Kelompok 3</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --wood-brown: #8d5524;
-            --soft-yellow: #fdf5e6;
-            --green-btn: #4caf50;
+            --primary-brown: #5d4037;
+            --light-wood: #fdf5e6;
+            --accent-green: #2ecc71;
+            --danger-red: #ff4d4d;
+            --warning-yellow: #f1c40f;
         }
 
         body {
-            font-family: 'Quicksand', sans-serif;
-            background: #fdf5e6 url('https://www.transparenttextures.com/patterns/cream-paper.png');
+            font-family: 'Poppins', sans-serif;
+            background-color: #e0d7c6; /* Background krem netral */
             margin: 0;
             padding: 20px;
-            display: flex;
-            justify-content: center;
+            color: #333;
         }
 
         .container {
-            width: 100%;
-            max-width: 500px;
+            max-width: 1000px;
+            margin: 0 auto;
             background: white;
             border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
         }
 
-        /* Header Gaya Kayu */
-        .header {
-            background: #a67c52;
-            background-image: url('https://www.transparenttextures.com/patterns/wood-pattern.png');
-            padding: 15px;
-            color: white;
+        /* HEADER SECTION */
+        .header-wrapper {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 4px solid #5d4037;
+            padding: 25px 40px;
+            background: var(--light-wood);
+            border-bottom: 3px solid var(--primary-brown);
         }
 
-        .header h2 { margin: 0; font-size: 1.2rem; text-transform: uppercase; }
-        .total-points { background: rgba(0,0,0,0.2); padding: 5px 10px; border-radius: 10px; font-size: 0.9rem; }
+        .brand h2 { margin: 0; color: var(--primary-brown); letter-spacing: 1px; }
+        .points-badge { background: var(--primary-brown); color: white; padding: 5px 15px; border-radius: 20px; font-size: 0.8rem; margin-top: 5px; display: inline-block; }
 
-        /* Main Content */
-        .content { padding: 25px; text-align: center; }
-        h3 { color: #2c3e50; margin-bottom: 5px; }
-        .sub-text { color: #7f8c8d; font-size: 0.85rem; margin-bottom: 20px; }
+        .level-card { width: 250px; text-align: right; }
+        .progress-container { background: #ddd; border-radius: 10px; height: 12px; margin: 8px 0; overflow: hidden; }
+        .progress-bar { width: 50%; background: #3498db; height: 100%; border-radius: 10px; }
 
-        /* Mood Buttons */
-        .mood-grid {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 8px;
-            margin-bottom: 20px;
+        /* CONTENT SECTION */
+        .main-content { padding: 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+
+        @media (max-width: 768px) {
+            .main-content { grid-template-columns: 1fr; }
+            .header-wrapper { flex-direction: column; text-align: center; }
+            .level-card { text-align: center; margin-top: 20px; }
         }
 
-        .mood-item {
-            border: 2px solid #e0e0e0;
-            border-radius: 12px;
-            padding: 10px 5px;
-            cursor: pointer;
-            transition: 0.3s;
-            background: white;
+        h3 { color: var(--primary-brown); margin-top: 0; }
+        
+        /* MOOD SELECTOR */
+        .mood-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-bottom: 20px; }
+        .mood-item { 
+            border: 2px solid #eee; border-radius: 12px; padding: 15px; text-align: center; 
+            cursor: pointer; transition: 0.3s; 
+        }
+        .mood-item:hover { border-color: var(--accent-green); background: #f0fff4; }
+        input[type="radio"]:checked + .mood-box { border-color: var(--accent-green); background: #f0fff4; }
+
+        textarea { width: 100%; border: 2px dashed #ccc; border-radius: 10px; padding: 15px; font-family: inherit; margin-bottom: 20px; box-sizing: border-box; }
+        
+        .btn-save { 
+            width: 100%; background: var(--accent-green); color: white; border: none; 
+            padding: 15px; border-radius: 10px; font-weight: 600; cursor: pointer; font-size: 1rem;
         }
 
-        .mood-item:hover { border-color: #a67c52; background: #fffde7; }
-        .mood-item div { font-size: 1.5rem; }
-        .mood-item span { font-size: 0.75rem; display: block; margin-top: 5px; }
-
-        /* Form Input */
-        textarea {
-            width: 100%;
-            padding: 15px;
-            border: 2px dashed #bdc3c7;
-            border-radius: 15px;
-            box-sizing: border-box;
-            font-family: inherit;
-            margin-bottom: 20px;
-            background: #fcfcfc;
+        /* HISTORY SECTION */
+        .history-list { max-height: 500px; overflow-y: auto; padding-right: 10px; }
+        .history-card { 
+            background: #f9f9f9; padding: 15px; border-radius: 12px; margin-bottom: 15px;
+            display: flex; justify-content: space-between; align-items: center; border-left: 5px solid var(--primary-brown);
         }
+        .history-info strong { font-size: 1.1rem; }
+        .history-info small { color: #888; display: block; margin-top: 5px; }
 
-        .btn-save {
-            background: #4caf50;
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            cursor: pointer;
-            width: 100%;
-            box-shadow: 0 4px #2e7d32;
-            transition: 0.2s;
-        }
-
-        .btn-save:active { transform: translateY(4px); box-shadow: none; }
-
-        /* Level Bar */
-        .level-section { margin-top: 25px; text-align: left; }
-        .progress-container {
-            background: #e0e0e0;
-            border-radius: 10px;
-            height: 20px;
-            margin-top: 10px;
-            overflow: hidden;
-        }
-        .progress-bar {
-            background: linear-gradient(to right, #3498db, #2980b9);
-            width: 50%;
-            height: 100%;
-        }
-
-        .footer-note { font-size: 0.7rem; color: #bdc3c7; margin-top: 30px; }
+        .action-btns { display: flex; gap: 5px; }
+        .btn-del { background: var(--danger-red); color: white; border: none; padding: 8px 12px; border-radius: 6px; cursor: pointer; }
+        .btn-edit { background: var(--warning-yellow); color: white; border: none; padding: 8px 12px; border-radius: 6px; cursor: pointer; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h2>MYMOOD JOURNAL 🍃</h2>
-            <div class="total-points">🏆 TOTAL: 120 POINTS</div>
-        </div>
 
-        <div class="content">
-    <h3>Bagaimana Perasaanmu?</h3>
-    <p class="sub-text">( Pilih satu untuk dapat +10 Poin! )</p>
-
-    <form action="/simpan" method="POST">
-        
-        <div class="mood-grid">
-            <label class="mood-item">
-                <input type="radio" name="mood" value="Joy" required style="display:none;">
-                <div>😊</div><span>Joy</span>
-            </label>
-            <label class="mood-item">
-                <input type="radio" name="mood" value="Sad" style="display:none;">
-                <div>😢</div><span>Sad</span>
-            </label>
-            <label class="mood-item">
-                <input type="radio" name="mood" value="Anger" style="display:none;">
-                <div>😡</div><span>Anger</span>
-            </label>
-            <label class="mood-item">
-                <input type="radio" name="mood" value="Fear" style="display:none;">
-                <div>😨</div><span>Fear</span>
-            </label>
-            <label class="mood-item">
-                <input type="radio" name="mood" value="Disgust" style="display:none;">
-                <div>🤢</div><span>Disgust</span>
-            </label>
-        </div>
-
-        <textarea name="catatan" placeholder="Tulis alasan singkat..." rows="3"></textarea>
-
-        <button type="submit" class="btn-save">SIMPAN JURNAL</button>
-        
-    </form>
+<div class="brand">
+    <h2>MYMOOD JOURNAL 🌿</h2>
+    <div class="points-badge">🏆 TOTAL: <%= totalPoints %> POINTS</div>
+</div>
+<div class="level-card">
+    <strong>LEVEL SAAT INI:</strong>
+    <div class="progress-container">
+        <div class="progress-bar" style="width: <%= progress %>%;"></div>
+    </div>
+    <small><%= progress %>% Menuju Level Berikutnya</small>
 </div>
 
-            <div class="level-section">
-                <strong>LEVEL SAAT INI:</strong>
-                <div class="progress-container">
-                    <div class="progress-bar"></div>
+    <div class="main-content">
+        <div class="input-section">
+            <h3>Bagaimana Perasaanmu?</h3>
+            <form action="/simpan" method="POST">
+                <div class="mood-grid">
+                    <% ['Joy', 'Sad', 'Anger', 'Fear', 'Disgust', 'Excited'].forEach(m => { %>
+                        <label>
+                            <input type="radio" name="mood" value="<%= m %>" required style="display:none;">
+                            <div class="mood-item">
+                                <div style="font-size: 1.5rem;">
+                                    <%= m=='Joy'?'😊':m=='Sad'?'😢':m=='Anger'?'😡':m=='Fear'?'😨':m=='Disgust'?'🤢':'🤩' %>
+                                </div>
+                                <span style="font-size: 0.8rem;"><%= m %></span>
+                            </div>
+                        </label>
+                    <% }) %>
                 </div>
-                <p style="font-size: 0.8rem; text-align: center; margin-top: 5px;">50% Menuju Level Berikutnya</p>
-            </div>
+                <textarea name="catatan" placeholder="Apa yang sedang kamu pikirkan?" rows="4" required></textarea>
+                <button type="submit" class="btn-save">SIMPAN JURNAL</button>
+            </form>
+        </div>
 
-            <div class="footer-note">
-                Akses via Port 1912 (Nginx Reverse Proxy)
+        <div class="history-section">
+            <h3>📜 Riwayat Terbaru</h3>
+            <div class="history-list">
+                <% if (typeof history !== 'undefined' && history.length > 0) { %>
+                    <% history.forEach(function(item) { %>
+                        <div class="history-card">
+                            <div class="history-info">
+                                <strong>
+                                    <%= item.mood === 'Joy' ? '😊' : item.mood === 'Sad' ? '😢' : item.mood === 'Anger' ? '😡' : item.mood === 'Fear' ? '😨' : item.mood === 'Disgust' ? '🤢' : '🤩' %> 
+                                    <%= item.mood %>
+                                </strong>
+                                <span>: <%= item.catatan %></span>
+                                <small><%= new Date(item.tanggal).toLocaleString('id-ID') %></small>
+                            </div>
+                            <div class="action-btns">
+                                <button onclick="editJurnal('<%= item.id %>', '<%= item.mood %>', '<%= item.catatan %>')" class="btn-edit">Edit</button>
+                                <form action="/hapus/<%= item.id %>" method="POST" onsubmit="return confirm('Hapus jurnal ini?')">
+                                    <button type="submit" class="btn-del">Hapus</button>
+                                </form>
+                            </div>
+                        </div>
+                    <% }); %>
+                <% } else { %>
+                    <p style="text-align: center; color: #888;">Belum ada catatan hari ini.</p>
+                <% } %>
             </div>
         </div>
     </div>
+</div>
+
+<script>
+    function editJurnal(id, oldMood, oldCatatan) {
+        const newCatatan = prompt("Edit catatan kamu:", oldCatatan);
+        if (newCatatan !== null) {
+            const form = document.createElement('form');
+            form.method = 'POST';
+            form.action = '/edit/' + id;
+            
+            const inputMood = document.createElement('input');
+            inputMood.type = 'hidden'; inputMood.name = 'mood'; inputMood.value = oldMood;
+            
+            const inputCatatan = document.createElement('input');
+            inputCatatan.type = 'hidden'; inputCatatan.name = 'catatan'; inputCatatan.value = newCatatan;
+
+            form.appendChild(inputMood); form.appendChild(inputCatatan);
+            document.body.appendChild(form);
+            form.submit();
+        }
+    }
+</script>
+
 </body>
 </html>

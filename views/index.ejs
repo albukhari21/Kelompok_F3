@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyMood Journal - Kelompok 3</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --wood-brown: #8d5524;
+            --soft-yellow: #fdf5e6;
+            --green-btn: #4caf50;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: #fdf5e6 url('https://www.transparenttextures.com/patterns/cream-paper.png');
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 500px;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        /* Header Gaya Kayu */
+        .header {
+            background: #a67c52;
+            background-image: url('https://www.transparenttextures.com/patterns/wood-pattern.png');
+            padding: 15px;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 4px solid #5d4037;
+        }
+
+        .header h2 { margin: 0; font-size: 1.2rem; text-transform: uppercase; }
+        .total-points { background: rgba(0,0,0,0.2); padding: 5px 10px; border-radius: 10px; font-size: 0.9rem; }
+
+        /* Main Content */
+        .content { padding: 25px; text-align: center; }
+        h3 { color: #2c3e50; margin-bottom: 5px; }
+        .sub-text { color: #7f8c8d; font-size: 0.85rem; margin-bottom: 20px; }
+
+        /* Mood Buttons */
+        .mood-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .mood-item {
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 10px 5px;
+            cursor: pointer;
+            transition: 0.3s;
+            background: white;
+        }
+
+        .mood-item:hover { border-color: #a67c52; background: #fffde7; }
+        .mood-item div { font-size: 1.5rem; }
+        .mood-item span { font-size: 0.75rem; display: block; margin-top: 5px; }
+
+        /* Form Input */
+        textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px dashed #bdc3c7;
+            border-radius: 15px;
+            box-sizing: border-box;
+            font-family: inherit;
+            margin-bottom: 20px;
+            background: #fcfcfc;
+        }
+
+        .btn-save {
+            background: #4caf50;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            box-shadow: 0 4px #2e7d32;
+            transition: 0.2s;
+        }
+
+        .btn-save:active { transform: translateY(4px); box-shadow: none; }
+
+        /* Level Bar */
+        .level-section { margin-top: 25px; text-align: left; }
+        .progress-container {
+            background: #e0e0e0;
+            border-radius: 10px;
+            height: 20px;
+            margin-top: 10px;
+            overflow: hidden;
+        }
+        .progress-bar {
+            background: linear-gradient(to right, #3498db, #2980b9);
+            width: 50%;
+            height: 100%;
+        }
+
+        .footer-note { font-size: 0.7rem; color: #bdc3c7; margin-top: 30px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h2>MYMOOD JOURNAL 🍃</h2>
+            <div class="total-points">🏆 TOTAL: 120 POINTS</div>
+        </div>
+
+        <div class="content">
+            <h3>Bagaimana Perasaanmu?</h3>
+            <p class="sub-text">( Pilih satu untuk dapat +10 Poin! )</p>
+
+            <div class="mood-grid">
+                <div class="mood-item"><div>😊</div><span>Joy</span></div>
+                <div class="mood-item"><div>😢</div><span>Sad</span></div>
+                <div class="mood-item"><div>😡</div><span>Anger</span></div>
+                <div class="mood-item"><div>😨</div><span>Fear</span></div>
+                <div class="mood-item"><div>🤢</div><span>Disgust</span></div>
+            </div>
+
+            <textarea placeholder="Tulis alasan singkat..." rows="3"></textarea>
+
+            <button class="btn-save">SIMPAN JURNAL</button>
+
+            <div class="level-section">
+                <strong>LEVEL SAAT INI:</strong>
+                <div class="progress-container">
+                    <div class="progress-bar"></div>
+                </div>
+                <p style="font-size: 0.8rem; text-align: center; margin-top: 5px;">50% Menuju Level Berikutnya</p>
+            </div>
+
+            <div class="footer-note">
+                Akses via Port 1912 (Nginx Reverse Proxy)
+            </div>
+        </div>
+    </div>
+</body>
+</html>
